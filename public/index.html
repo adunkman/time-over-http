@@ -17,14 +17,17 @@
 
           const corrected_client_end = new Date(server_end + return_trip_time);
 
-          console.log({
+          document.querySelector("pre").innerText = JSON.stringify({
             client_now: client_end,
-            server_now: corrected_client_end
-          });
+            server_now: corrected_client_end,
+            difference_in_seconds: (client_end - corrected_client_end) / 1000
+          }, null, 2);
         });
       })();
     </script>
   </head>
   <body>
+    <h1>Time sync over HTTP demo</h1>
+    <pre>Calculating...</pre>
   </body>
 </html>
