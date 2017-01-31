@@ -3,24 +3,36 @@
   <head>
     <script>
       (() => {
-        const client_start = new Date();
+        class Calibrator {
+          beginRequest() {
+            this.client_start = new Date();
+          }
 
+          endRequest(server_start, server_end) {
+            this.client_end = new Date();
+            this.server_start = server_start;
+            this.server_end = server_end || server_start;
+          }
+
+          clockDifference() {
+            const server_duration = this.server_end - this.server_start;
+            const client_duration = this.client_end - this.client_start;
+            const in_flight_time = client_duration - server_duration;
+            const return_trip_time = in_flight_time / 2;
+            const corrected_client_end = this.server_end + return_trip_time;
+
+            return this.client_end - corrected_client_end;
+          }
+        }
+
+        const calibrator = new Calibrator();
+
+        calibrator.beginRequest();
         fetch("/endpoint").then((res) => {
-          const client_end = new Date();
-          const server_start = Date.parse(res.headers.get("Date"));
-          const server_end = server_start;
-
-          const server_duration = server_end - server_start;
-          const client_duration = client_end - client_start;
-          const in_flight_time = client_duration - server_duration;
-          const return_trip_time = in_flight_time / 2;
-
-          const corrected_client_end = new Date(server_end + return_trip_time);
+          calibrator.endRequest(Date.parse(res.headers.get("Date")));
 
           document.querySelector("pre").innerText = JSON.stringify({
-            client_now: client_end,
-            server_now: corrected_client_end,
-            difference_in_seconds: (client_end - corrected_client_end) / 1000
+            difference_in_seconds: calibrator.clockDifference() / 1000
           }, null, 2);
         });
       })();
