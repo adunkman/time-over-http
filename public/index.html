@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      (() => {
+        const client_start = new Date();
+
+        fetch("/endpoint").then((res) => {
+          const client_end = new Date();
+          const server_start = Date.parse(res.headers.get("Date"));
+          const server_end = server_start;
+
+          const server_duration = server_end - server_start;
+          const client_duration = client_end - client_start;
+          const in_flight_time = client_duration - server_duration;
+          const return_trip_time = in_flight_time / 2;
+
+          const corrected_client_end = new Date(server_end + return_trip_time);
+
+          console.log({
+            client_now: client_end,
+            server_now: corrected_client_end
+          });
+        });
+      })();
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
