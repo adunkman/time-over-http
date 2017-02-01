@@ -3,12 +3,17 @@ const http = require("http");
 const path = require("path");
 
 http.createServer((req, res) => {
+  const response_start = Date.now();
+
   if (req.url === "/") {
     return sendHtml(res);
   }
 
   if (req.url === "/endpoint") {
-    res.writeHead(200);
+    res.writeHead(200, {
+      "Response-Start": response_start,
+      "Response-End": Date.now()
+    });
     return res.end();
   }
 

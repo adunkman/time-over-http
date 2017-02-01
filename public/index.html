@@ -25,14 +25,21 @@
           }
         }
 
-        const calibrator = new Calibrator();
+        const calibrator_with_date = new Calibrator();
+        const calibrator_with_custom_header = new Calibrator();
 
-        calibrator.beginRequest();
+        calibrator_with_date.beginRequest();
+        calibrator_with_custom_header.beginRequest();
         fetch("/endpoint").then((res) => {
-          calibrator.endRequest(Date.parse(res.headers.get("Date")));
+          calibrator_with_date.endRequest(Date.parse(res.headers.get("Date")));
+          calibrator_with_custom_header.endRequest(
+            +new Date(+res.headers.get("Response-Start")),
+            +new Date(+res.headers.get("Response-End"))
+          );
 
           document.querySelector("pre").innerText = JSON.stringify({
-            difference_in_seconds: calibrator.clockDifference() / 1000
+            difference_in_seconds_using_date: calibrator_with_date.clockDifference() / 1000,
+            difference_in_seconds_using_custom_header: calibrator_with_custom_header.clockDifference() / 1000
           }, null, 2);
         });
       })();
