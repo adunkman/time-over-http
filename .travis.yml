@@ -1,8 +1,0 @@
-language: node_js
-deploy:
-  provider: heroku
-  api_key:
-    secure: uhSBV7ycjyqcyuVcmaSkT1/TxVO26Goun5oW3R+5IQ3x7lT5FD8zUQ6jDe2YOP5ZuSa08QFqrbKXDYiN59jgRDHoiLlDxP/ILCTfGkXNBbvjTbIDVOt4HRYXF1N2+8iGhjosEE3pUYtjoKsOTnpbJuzoglCbRs+yJzJ6hxriWe14g14Iy2hugt3LNecJQXnq2pLq2VyjEoZFWKGIAajXM6NPJDOwhqP+0ZYDDEFSzloWbDFIqTfijcvrsKX8/seY43iQ4440uJ4C5a+KdBTwHMDRWWdvhudl3SKcML9oodnAIawiQ9+vu4sn4yvbeIFlVkeHW8p2opPe1U5q0p/iURSo3PzAXahs5ca/I0fw2GG+WW0l2mARZdhMQLYjqd9w1a8F7EqOHQsdqclLvKB66ASv14ciDKpy5su/wC26ntg4i/clk1V4KePWLQKdM+XNcgSvx70JIYPnB1fceGOw6QQykv1jh5GjJNcv3cR28uaXMe4TVYTxjtfEg79k1Rv2Ptx76iy4J0JN2D/sd0QNhThFopG5SCp30qiFMrWUsaeFF+aHWekfpJdZO1X0u+Xjuu3yrhMqdYVtHtURcz/63yl2AeON9m21EojO7UnngKrA8sX4lsNQ24Rj+mh82sB/crNv3l+Pm190gEIkKeUs4QOEaPWwIw7floC6FSqHzZQ=
-  app: time-over-http
-  on:
-    repo: adunkman/time-over-http
