@@ -1,8 +1,7 @@
-const fs = require("fs");
-const http = require("http");
-const path = require("path");
+import { statSync, createReadStream } from "fs";
+import { createServer } from "http";
 
-http.createServer((req, res) => {
+createServer((req, res) => {
   const response_start = Date.now();
 
   if (req.url === "/") {
@@ -25,11 +24,11 @@ http.createServer((req, res) => {
 
 const sendHtml = (res) => {
   const file = "./public/index.html";
-  const stat = fs.statSync(file);
+  const stat = statSync(file);
   res.writeHead(200, {
     "Content-Type": "text/html",
     "Content-Length": stat.size
   });
 
-  fs.createReadStream(file).pipe(res);
+  createReadStream(file).pipe(res);
 };

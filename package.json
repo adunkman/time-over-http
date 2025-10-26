@@ -1,10 +1,10 @@
 {
   "name": "time-over-http",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"No tests specified\" && exit 0",
     "start": "node server.js"
   },
   "author": "",
