@@ -1,7 +1,7 @@
 import { statSync, createReadStream } from "fs";
 import { createServer } from "http";
 
-createServer((req, res) => {
+export default createServer((req, res) => {
   const response_start = Date.now();
 
   if (req.url === "/") {
