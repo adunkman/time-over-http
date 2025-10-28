@@ -2,10 +2,8 @@
   "name": "time-over-http",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node api/endpoint.js"
   },
   "author": "",
   "license": "ISC",
