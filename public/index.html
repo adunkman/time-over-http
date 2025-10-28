@@ -5,11 +5,11 @@
       (() => {
         class Calibrator {
           beginRequest() {
-            this.client_start = new Date();
+            this.client_start = Date.now();
           }
 
           endRequest(server_start, server_end) {
-            this.client_end = new Date();
+            this.client_end = Date.now();
             this.server_start = server_start;
             this.server_end = server_end || server_start;
           }
