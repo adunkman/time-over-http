@@ -30,7 +30,7 @@
 
         calibrator_with_date.beginRequest();
         calibrator_with_custom_header.beginRequest();
-        fetch("/endpoint").then((res) => {
+        fetch("/api/endpoint").then((res) => {
           calibrator_with_date.endRequest(Date.parse(res.headers.get("Date")));
           calibrator_with_custom_header.endRequest(
             +new Date(+res.headers.get("Response-Start")),
